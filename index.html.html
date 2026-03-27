@@ -1,0 +1,467 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ishan Rimal | Portfolio</title>
+    <link rel="shortcut icon" href="/image.png" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: 'Poppins', Arial, Helvetica, sans-serif;
+            scroll-behavior: smooth;
+            color: #edf3ff;
+            background: linear-gradient(140deg, #111724, #1a244f 65%, #262d4f 100%);
+            min-height: 100%;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            width: 100%;
+            height: 72px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 26px;
+            background: rgba(11, 17, 36, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+        }
+
+        .logo img {
+            width: 130px;
+            height: auto;
+            display: block;
+        }
+
+        .navitems ul {
+            display: flex;
+            gap: 16px;
+            list-style: none;
+        }
+
+        .navitems ul a {
+            color: #d9e8ff;
+            text-decoration: none;
+            font-size: 0.94rem;
+            font-weight: 700;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: all 0.22s ease;
+        }
+
+        .navitems ul a:hover {
+            background: rgba(33, 215, 146, 0.2);
+            color: #16e4c0;
+        }
+
+        .searchbar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .searchbar input,
+        .searchbar button {
+            border-radius: 8px;
+            border: 1px solid #4b5b90;
+            background: rgba(255, 255, 255, 0.08);
+            color: #eef7ff;
+            font-size: 0.88rem;
+            padding: 6px 9px;
+        }
+
+        .searchbar button {
+            cursor: pointer;
+            border-color: #18d7d0;
+            background: #18d7d0;
+            color: #0a1421;
+            font-weight: bold;
+        }
+
+        section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 72px 24px;
+            border-radius: 18px;
+        }
+
+        .home {
+            padding-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 14px;
+            text-align: center;
+            background: linear-gradient(140deg, rgba(19, 26, 54, 0.88), rgba(23, 36, 66, 0.65));
+            border: 1px solid rgba(158, 183, 255, 0.08);
+            box-shadow: 0 18px 44px rgba(2, 8, 20, 0.44);
+        }
+
+        .profile-pic {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #21dd92;
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
+        }
+
+        .home h1 {
+            font-size: clamp(2.1rem, 5vw, 3.8rem);
+            color: #fbfbff;
+        }
+
+        .role, .contact-info {
+            font-size: 1rem;
+            color: #b6dfff;
+        }
+
+        .section-title {
+            margin-bottom: 20px;
+            font-size: clamp(1.85rem, 3.8vw, 2.8rem);
+            color: #f8fbff;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 6px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 90px;
+            height: 4px;
+            background: linear-gradient(90deg, #21dd92, #1e9fec);
+            border-radius: 4px;
+        }
+
+        .panel {
+            background: rgba(15, 21, 50, 0.85);
+            border-radius: 16px;
+            border: 1px solid rgba(131, 163, 233, 0.21);
+            padding: 32px;
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35);
+        }
+
+        .about p {
+            margin-top: 12px;
+            font-size: 1rem;
+            line-height: 1.72;
+            color: #e3ebfd;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .card,
+        .project-card,
+        .experience-card,
+        .education-card {
+            background: rgba(22, 30, 68, 0.95);
+            border: 1px solid rgba(119, 162, 240, 0.25);
+            border-radius: 14px;
+            padding: 18px;
+            transition: transform 0.28s ease, box-shadow 0.28s ease;
+            box-shadow: 0 8px 16px rgba(4, 8, 32, 0.35);
+        }
+
+        .card:hover,
+        .project-card:hover,
+        .experience-card:hover,
+        .education-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 30px rgba(3, 8, 30, 0.48);
+        }
+
+        .card h3,
+        .project-card h3,
+        .experience-card h3,
+        .education-card h3 {
+            color: #f8fcff;
+            margin-bottom: 10px;
+        }
+
+        .card ul,
+        .experience-card ul,
+        .education-card ul {
+            list-style: none;
+            margin-top: 8px;
+            padding-left: 0;
+        }
+
+        .card li,
+        .experience-card li,
+        .education-card li {
+            margin-bottom: 7px;
+            color: #bdd8ff;
+            font-size: 0.97rem;
+        }
+
+        .project-card p,
+        .experience-card p,
+        .education-card p,
+        .testimonial-card p {
+            color: #ccd8f9;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .project-card span,
+        .experience-meta,
+        .education-meta,
+        .testimonial-source {
+            display: block;
+            font-size: 0.84rem;
+            color: #8baddf;
+            margin-top: 4px;
+        }
+
+        .btn-box {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 16px;
+        }
+
+        .btn {
+            border-radius: 35px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 11px 20px;
+            border: 1px solid transparent;
+            transition: all 0.22s ease;
+            display: inline-block;
+        }
+
+        .whatsapp {
+            background-color: #25d366;
+            color: #0d2715;
+        }
+
+        .email {
+            background-color: #ffffff;
+            color: #1f375a;
+        }
+
+        .btn:hover {
+            opacity: 0.92;
+            transform: translateY(-3px);
+        }
+
+        #contact h2 {
+            margin-bottom: 16px;
+            color: #aefcff;
+        }
+
+        .footer-notes {
+            margin-top: 20px;
+            font-size: 0.92rem;
+            color: #adc6df;
+        }
+
+        @media (max-width: 900px) {
+            .navitems ul {
+                gap: 8px;
+            }
+
+            .navbar {
+                padding: 0 14px;
+            }
+
+            .searchbar { display: none; }
+
+            .home {
+                min-height: auto;
+                padding: 64px 14px;
+            }
+
+            section {
+                padding: 58px 14px;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .role,
+            .contact-info,
+            .project-card p,
+            .experience-card p,
+            .education-card p,
+            .testimonial-card p {
+                font-size: 0.88rem;
+            }
+
+            .navbar {
+                flex-wrap: wrap;
+                height: auto;
+                padding: 12px 14px;
+                gap: 10px;
+            }
+
+            .navitems ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="https://cdn.textstudio.com/output/sample/normal/1/3/4/3/ishaan-logo-73-23431.png" alt="Ishan Logo">
+        </div>
+        <div class="navitems">
+            <ul>
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#experience">Experience</a>
+                <a href="#education">Education</a>
+                <a href="#contact">Contact</a>
+            </ul>
+        </div>
+        <div class="searchbar">
+            <input type="text" placeholder="Search..."><button>Go</button>
+        </div>
+    </div>
+
+    <section id="home" class="home">
+        <img src="profile.jpeg" alt="profile picture" class="profile-pic">
+        <h1>Ishan Rimal</h1>
+        <p class="role">Full Stack Developer • Data & AI Enthusiast</p>
+        <p class="contact-info">Email: ishanrimal90@gmail.com | Phone: +977 9816714730 | Kathmandu, Nepal</p>
+    </section>
+
+    <section id="about" class="about panel">
+        <h2 class="section-title">About Me</h2>
+        <p>I am a passionate developer with a keen eye for modern aesthetics and functional code. I specialize in building scalable web applications, dashboards, and intelligent systems with clean HTML and CSS. I love solving complex problems and turning ideas into reality. In my free time, I contribute to open-source projects, explore AI, and help learners through tutorials and mentorship.</p>
+    </section>
+
+    <section id="skills" class="skills panel">
+        <h2 class="section-title">Skills</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Frontend</h3>
+                <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                    <li>React</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Backend</h3>
+                <ul>
+                    <li>Node.js</li>
+                    <li>Express</li>
+                    <li>MongoDB</li>
+                    <li>REST API</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Programming</h3>
+                <ul>
+                    <li>C</li>
+                    <li>C++</li>
+                    <li>Python</li>
+                    <li>SQL</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Tools & Workflow</h3>
+                <ul>
+                    <li>Git & GitHub</li>
+                    <li>VS Code</li>
+                    <li>Figma & UI Design</li>
+                    <li>CI/CD Basics</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="panel">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-container">
+            <div class="project-card">
+                <h3>Calculator</h3>
+                <p>A responsive calculator built with JavaScript. Supports all basic operations and keyboard input.</p>
+                <span class="project-meta">HTML, CSS, JavaScript</span>
+            </div>
+            <div class="project-card">
+                <h3>Weather App</h3>
+                <p>Displays live weather data using a public API, and includes city search and dynamic icons.</p>
+                <span class="project-meta">React, OpenWeatherMap API</span>
+            </div>
+            <div class="project-card">
+                <h3>Portfolio Website</h3>
+                <p>Responsive portfolio showcasing skills, experience and projects with interactive navigation.</p>
+                <span class="project-meta">HTML, CSS, JavaScript</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="panel">
+        <h2 class="section-title">Experience</h2>
+        <div class="experience-grid">
+            <div class="experience-card">
+                <h3>Full Stack Intern</h3>
+                <p>Developed feature-rich web applications, implemented REST APIs, and collaborated on Agile sprint cycles.</p>
+                <span class="experience-meta">Company XYZ • 2023 - Present</span>
+            </div>
+            <div class="experience-card">
+                <h3>Frontend Developer</h3>
+                <p>Built responsive UI components and improved UX using modern HTML/CSS and JS frameworks.</p>
+                <span class="experience-meta">Freelance • 2022 - 2023</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="panel">
+        <h2 class="section-title">Education</h2>
+        <div class="education-grid">
+            <div class="education-card">
+                <h3>Bachelor in Information Technology</h3>
+                <p>Focused on software engineering, database systems, and AI foundations.</p>
+                <span class="education-meta">University of XYZ • 2019 - 2023</span>
+            </div>
+            <div class="education-card">
+                <h3>Web Development Certification</h3>
+                <p>Advanced course in full stack web development with 120+ hours of practical projects.</p>
+                <span class="education-meta">Online Bootcamp • 2022</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="panel">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="btn-box">
+            <a href="https://wa.me/9816714730" class="btn whatsapp">Chat on WhatsApp</a>
+            <a href="mailto:ishanrimal90@gmail.com" class="btn email">Send Email</a>
+        </div>
+        
+    </section>
+</body>
+</html>
